@@ -1,7 +1,7 @@
 Index: package/network/services/dnsmasq/Makefile
 ===================================================================
---- package/network/services/dnsmasq/Makefile	(revision 46893)
-+++ package/network/services/dnsmasq/Makefile	(working copy)
+--- package/network/services/dnsmasq/Makefile
++++ package/network/services/dnsmasq/Makefile
 @@ -116,7 +116,7 @@
  		$(if $(CONFIG_PACKAGE_dnsmasq_$(BUILD_VARIANT)_ipset),,-DNO_IPSET)
  	COPTS += $(if $(CONFIG_LIBNETTLE_MINI),-DNO_GMP,)
@@ -9,5 +9,5 @@ Index: package/network/services/dnsmasq/Makefile
 -	COPTS += -DNO_AUTH -DNO_IPSET
 +	COPTS += -DNO_AUTH
  endif
- 
+
  MAKE_FLAGS := \

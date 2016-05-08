@@ -1,7 +1,7 @@
 Index: target/linux/ramips/base-files/etc/board.d/01_leds
 ===================================================================
---- target/linux/ramips/base-files/etc/board.d/01_leds	(revision 46893)
-+++ target/linux/ramips/base-files/etc/board.d/01_leds	(working copy)
+--- target/linux/ramips/base-files/etc/board.d/01_leds
++++ target/linux/ramips/base-files/etc/board.d/01_leds
 @@ -243,6 +243,29 @@
  		set_usb_led "wr8305rt:usb"
  		set_wifi_led "wr8305rt:wifi"
@@ -10,7 +10,7 @@ Index: target/linux/ramips/base-files/etc/board.d/01_leds
 +		ucidef_set_led_default "system" "system" "hc5661:blue:system" "1"
 +		ucidef_set_led_netdev "internet" "internet" "hc5661:blue:internet" "eth0.2"
 +		set_wifi_led "hc5661:blue:wlan2g"
-+		;;	
++		;;
 +	hc5761)
 +		ucidef_set_led_default "system" "system" "hc5761:blue:system" "1"
 +		ucidef_set_led_netdev "internet" "internet" "hc5761:blue:internet" "eth0.2"
@@ -34,12 +34,12 @@ Index: target/linux/ramips/base-files/etc/board.d/01_leds
  		;;
 Index: target/linux/ramips/base-files/etc/board.d/02_network
 ===================================================================
---- target/linux/ramips/base-files/etc/board.d/02_network	(revision 46893)
-+++ target/linux/ramips/base-files/etc/board.d/02_network	(working copy)
+--- target/linux/ramips/base-files/etc/board.d/02_network
++++ target/linux/ramips/base-files/etc/board.d/02_network
 @@ -233,6 +233,8 @@
  		ucidef_add_switch_vlan "switch0" "2" "4 6t"
  		;;
- 
+
 +	hc5*61 | \
 +	hc5661a | \
  	y1s)
@@ -48,7 +48,7 @@ Index: target/linux/ramips/base-files/etc/board.d/02_network
 @@ -283,6 +285,13 @@
  		wan_mac=$(mtd_get_mac_binary devdata 7)
  		;;
- 
+
 +	hc5*61 |\
 +	hc5661a)
 +		lan_mac=`mtd_get_mac_ascii bdinfo "Vfac_mac "`
@@ -61,8 +61,8 @@ Index: target/linux/ramips/base-files/etc/board.d/02_network
  		wan_mac=$(macaddr_add "$lan_mac" 5)
 Index: target/linux/ramips/base-files/etc/diag.sh
 ===================================================================
---- target/linux/ramips/base-files/etc/diag.sh	(revision 46893)
-+++ target/linux/ramips/base-files/etc/diag.sh	(working copy)
+--- target/linux/ramips/base-files/etc/diag.sh
++++ target/linux/ramips/base-files/etc/diag.sh
 @@ -69,6 +69,18 @@
  	fonera20n)
  		status_led="fonera20n:green:power"
@@ -84,8 +84,8 @@ Index: target/linux/ramips/base-files/etc/diag.sh
  		;;
 Index: target/linux/ramips/base-files/lib/ramips.sh
 ===================================================================
---- target/linux/ramips/base-files/lib/ramips.sh	(revision 46893)
-+++ target/linux/ramips/base-files/lib/ramips.sh	(working copy)
+--- target/linux/ramips/base-files/lib/ramips.sh
++++ target/linux/ramips/base-files/lib/ramips.sh
 @@ -172,6 +172,18 @@
  	*"Hauppauge Broadway")
  		name="broadway"
@@ -107,8 +107,8 @@ Index: target/linux/ramips/base-files/lib/ramips.sh
  		;;
 Index: target/linux/ramips/base-files/lib/upgrade/platform.sh
 ===================================================================
---- target/linux/ramips/base-files/lib/upgrade/platform.sh	(revision 46893)
-+++ target/linux/ramips/base-files/lib/upgrade/platform.sh	(working copy)
+--- target/linux/ramips/base-files/lib/upgrade/platform.sh
++++ target/linux/ramips/base-files/lib/upgrade/platform.sh
 @@ -56,6 +56,8 @@
  	firewrt |\
  	pbr-m1 |\
@@ -120,8 +120,8 @@ Index: target/linux/ramips/base-files/lib/upgrade/platform.sh
  	hw550-3g | \
 Index: target/linux/ramips/dts/HC5661A.dts
 ===================================================================
---- target/linux/ramips/dts/HC5661A.dts	(revision 0)
-+++ target/linux/ramips/dts/HC5661A.dts	(revision 0)
+--- target/linux/ramips/dts/HC5661A.dts
++++ target/linux/ramips/dts/HC5661A.dts
 @@ -0,0 +1,78 @@
 +/dts-v1/;
 +
@@ -203,8 +203,8 @@ Index: target/linux/ramips/dts/HC5661A.dts
 +};
 Index: target/linux/ramips/dts/HC5661.dts
 ===================================================================
---- target/linux/ramips/dts/HC5661.dts	(revision 0)
-+++ target/linux/ramips/dts/HC5661.dts	(revision 0)
+--- target/linux/ramips/dts/HC5661.dts
++++ target/linux/ramips/dts/HC5661.dts
 @@ -0,0 +1,32 @@
 +/dts-v1/;
 +
@@ -240,8 +240,8 @@ Index: target/linux/ramips/dts/HC5661.dts
 +};
 Index: target/linux/ramips/dts/HC5761.dts
 ===================================================================
---- target/linux/ramips/dts/HC5761.dts	(revision 0)
-+++ target/linux/ramips/dts/HC5761.dts	(revision 0)
+--- target/linux/ramips/dts/HC5761.dts
++++ target/linux/ramips/dts/HC5761.dts
 @@ -0,0 +1,32 @@
 +/dts-v1/;
 +
@@ -277,8 +277,8 @@ Index: target/linux/ramips/dts/HC5761.dts
 +};
 Index: target/linux/ramips/dts/HC5861.dts
 ===================================================================
---- target/linux/ramips/dts/HC5861.dts	(revision 0)
-+++ target/linux/ramips/dts/HC5861.dts	(revision 0)
+--- target/linux/ramips/dts/HC5861.dts
++++ target/linux/ramips/dts/HC5861.dts
 @@ -0,0 +1,92 @@
 +/dts-v1/;
 +
@@ -374,8 +374,8 @@ Index: target/linux/ramips/dts/HC5861.dts
 +};
 Index: target/linux/ramips/dts/HC5XXX.dtsi
 ===================================================================
---- target/linux/ramips/dts/HC5XXX.dtsi	(revision 0)
-+++ target/linux/ramips/dts/HC5XXX.dtsi	(revision 0)
+--- target/linux/ramips/dts/HC5XXX.dtsi
++++ target/linux/ramips/dts/HC5XXX.dtsi
 @@ -0,0 +1,141 @@
 +/include/ "mt7620a.dtsi"
 +
@@ -520,8 +520,8 @@ Index: target/linux/ramips/dts/HC5XXX.dtsi
 +};
 Index: target/linux/ramips/image/Makefile
 ===================================================================
---- target/linux/ramips/image/Makefile	(revision 46893)
-+++ target/linux/ramips/image/Makefile	(working copy)
+--- target/linux/ramips/image/Makefile
++++ target/linux/ramips/image/Makefile
 @@ -866,6 +866,10 @@
  na930_mtd_size=20971520
  Image/Build/Profile/NA930=$(call BuildFirmware/CustomFlash/$(1),$(1),na930,NA930,$(na930_mtd_size))
@@ -546,8 +546,8 @@ Index: target/linux/ramips/image/Makefile
  	$(call Image/Build/Profile/MLW221,$(1))
 Index: target/linux/ramips/mt7620/profiles/hiwifi.mk
 ===================================================================
---- target/linux/ramips/mt7620/profiles/hiwifi.mk	(revision 0)
-+++ target/linux/ramips/mt7620/profiles/hiwifi.mk	(revision 0)
+--- target/linux/ramips/mt7620/profiles/hiwifi.mk
++++ target/linux/ramips/mt7620/profiles/hiwifi.mk
 @@ -0,0 +1,47 @@
 +#
 +# Copyright (C) 2015 OpenWrt.org
@@ -583,7 +583,7 @@ Index: target/linux/ramips/mt7620/profiles/hiwifi.mk
 +endef
 +$(eval $(call Profile,HC5761))
 +
-+	
++
 +define Profile/HC5861
 +	NAME:=HiWiFi HC5861
 +	PACKAGES:=\
@@ -598,8 +598,8 @@ Index: target/linux/ramips/mt7620/profiles/hiwifi.mk
 +$(eval $(call Profile,HC5861))
 Index: target/linux/ramips/mt7628/profiles/hiwifi.mk
 ===================================================================
---- target/linux/ramips/mt7628/profiles/hiwifi.mk	(revision 0)
-+++ target/linux/ramips/mt7628/profiles/hiwifi.mk	(revision 0)
+--- target/linux/ramips/mt7628/profiles/hiwifi.mk
++++ target/linux/ramips/mt7628/profiles/hiwifi.mk
 @@ -0,0 +1,19 @@
 +#
 +# Copyright (C) 2015 OpenWrt.org
